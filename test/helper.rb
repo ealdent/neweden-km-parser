@@ -14,5 +14,10 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'neweden-km-parser'
 
+EXAMPLE_KILLMAILS = {}
+Dir.glob(File.join(File.dirname(__FILE__), '*.txt')).map do |f|
+  EXAMPLE_KILLMAILS[f.split('/').last] = File.read(f)
+end
+
 class Test::Unit::TestCase
 end

@@ -346,21 +346,21 @@ Damage Done: 0
 
 Destroyed items:
 
-Photon Scattering Field II 
-Large S95a Partial Shield Transporter 
-Medium Core Defence Field Extender I 
-Large Energy Transfer Array II 
-Medium Ancillary Current Router I 
-Experimental 10MN MicroWarpdrive I 
-Large Shield Extender II 
+Photon Scattering Field II
+Large S95a Partial Shield Transporter
+Medium Core Defence Field Extender I
+Large Energy Transfer Array II
+Medium Ancillary Current Router I
+Experimental 10MN MicroWarpdrive I
+Large Shield Extender II
 Warrior II, Qty: 3 (Drone Bay)
-Peripheral Weapon Navigation Diameter 
+Peripheral Weapon Navigation Diameter
 
 Dropped items:
 
-Invulnerability Field II 
-Large S95a Partial Shield Transporter, Qty: 3 
-Reactor Control Unit II 
-Large Energy Transfer Array II 
+Invulnerability Field II
+Large S95a Partial Shield Transporter, Qty: 3
+Reactor Control Unit II
+Large Energy Transfer Array II
 Warrior II, Qty: 2 (Drone Bay)
 Damage Control II
