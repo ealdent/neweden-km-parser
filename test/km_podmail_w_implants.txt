@@ -1,0 +1,67 @@
+2012.04.17 21:12
+
+Victim: Saratos852
+Corp: Eternally Corporation
+Alliance: RED Citizens
+Faction: None
+Destroyed: Capsule
+System: 9CG6-H
+Security: 0.0
+Damage Taken: 262
+
+Involved parties:
+
+Name: Niles Montgomery (laid the final blow)
+Security: 1.2
+Corp: Space Marine Academy
+Alliance: Nulli Tertius
+Faction: None
+Ship: Harbinger
+Weapon: Heavy Pulse Laser II
+Damage Done: 262
+
+Name: Transonic
+Security: 1.3
+Corp: Aliastra
+Alliance: None
+Faction: None
+Ship: Stiletto
+Weapon: 'Langour' Drive Disruptor I
+Damage Done: 0
+
+Name: Berdennol
+Security: 5.0
+Corp: 101st Space Marine Force
+Alliance: Nulli Secunda
+Faction: None
+Ship: Drake
+Weapon: Warp Disruptor II
+Damage Done: 0
+
+Name: Senobritis
+Security: 5.0
+Corp: 101st Space Marine Force
+Alliance: Nulli Secunda
+Faction: None
+Ship: Sabre
+Weapon: J5b Phased Prototype Warp Scrambler I
+Damage Done: 0
+
+Name: Totalani
+Security: 5.0
+Corp: 101st Space Marine Force
+Alliance: Nulli Secunda
+Faction: None
+Ship: Retribution
+Weapon: J5b Phased Prototype Warp Scrambler I
+Damage Done: 0
+
+
+Destroyed items:
+
+Cybernetic Subprocessor - Improved (Implant)
+Social Adaptation Chip - Improved (Implant)
+Memory Augmentation - Improved (Implant)
+Mining Foreman Mindlink (Implant)
+Neural Boost - Improved (Implant)
+Ocular Filter - Improved (Implant)

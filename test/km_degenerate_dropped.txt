@@ -1,0 +1,49 @@
+2012.04.19 02:23
+
+Victim: Waister
+Corp: Tactical Soldiers
+Alliance: Nulli Secunda
+Faction: None
+Destroyed: Capsule
+System: BWF-ZZ
+Security: 0.0
+Damage Taken: 351
+
+Involved parties:
+
+Name: cas0
+Security: 1.3
+Corp: Interstellar eXodus
+Alliance: BricK sQuAD.
+Faction: None
+Ship: Tornado
+Weapon: 1400mm Prototype Siege Cannon
+Damage Done: 341
+
+Name: Naternine (laid the final blow)
+Security: 3.8
+Corp: Liberation Army
+Alliance: BricK sQuAD.
+Faction: None
+Ship: Drake
+Weapon: Caldari Navy Scourge Heavy Missile
+Damage Done: 10
+
+Name: Misera Blue
+Security: 5.0
+Corp: Liberation Army
+Alliance: BricK sQuAD.
+Faction: None
+Ship: Tornado
+Weapon: 1200mm Artillery Cannon II
+Damage Done: 0
+
+Name: WaveDragon
+Security: -2.1
+Corp: Red Sky Morning
+Alliance: BricK sQuAD.
+Faction: None
+Ship: Unknown
+Weapon: Prototype 'Arbalest' Torpedo Launcher
+Damage Done: 0
+

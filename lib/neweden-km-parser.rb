@@ -24,14 +24,53 @@ class KillmailParser
     process
   end
 
-  def process
-    victim, body = @killmail.split("Involved parties:").map { |txt| txt.strip }
-    attackers, items_body = body.split("Destroyed items:").map { |txt| txt.strip }
-    destroyed, dropped = items_body.split("Dropped items:").map { |txt| txt.strip }
-    date, victim = victim.split("\n\n").map { |txt| txt.strip }
-    attackers = attackers.split("\n\n").map { |txt| txt.strip }
+  def parse_victim_and_date(pbody)
+    raise "Could not parse victim and date" if pbody.nil? || pbody.empty?
 
-    ap attackers
+    header, pbody = pbody.split("Involved parties:").map { |txt| txt.strip }
+    date, victim = header.split("\n\n").map { |txt| txt.strip }
+    [date, victim, pbody]
+  end
+
+  def parse_attackers(pbody)
+    raise "Could not parse attackers" if pbody.nil? || pbody.empty?
+
+    split_on = if pbody =~ /Destroyed items:/
+      @has_destroyed = true
+      'Destroyed items:'
+    elsif pbody =~ /Dropped items:/
+      @has_destroyed = false
+      'Dropped items:'
+    else
+      @has_destroyed = false
+      nil
+    end
+
+    attacker_txt, pbody = if split_on
+      pbody.split(split_on).map { |txt| txt.strip }
+    else
+      [pbody.strip, nil]
+    end
+
+    attackers = attacker_txt.split("\n\n").map { |txt| txt.strip }
+    [attackers, pbody]
+  end
+
+  def parse_destroyed_items(pbody)
+    return [nil, nil] if pbody.nil? || pbody.empty?
+
+    if pbody =~ /Dropped items:/
+      pbody.split("Dropped items:").map { |txt| txt.strip }
+    else
+      [pbody.strip, nil]
+    end
+  end
+
+  def process
+    date, victim, pbody = parse_victim_and_date(@killmail)
+    attackers, pbody = parse_attackers(pbody)
+    destroyed, pbody = parse_destroyed_items(pbody) if pbody && @has_destroyed
+    dropped = pbody.nil? ? nil : pbody.strip
 
     @date = DateTime.parse(date)
 
@@ -50,7 +89,6 @@ class KillmailParser
     @attackers = []
     attackers.each do |attacker|
       attacker_match = _attacker.match(attacker)
-      puts attacker_match
       @attackers << {
         :name =>        attacker_match[1],
         :security =>    attacker_match[2],
@@ -66,7 +104,7 @@ class KillmailParser
     @destroyed_items = []
     @dropped_items = []
     [[destroyed, @destroyed_items], [dropped, @dropped_items]].each do |body, items|
-      body.split(/[\n\r]+/).each do |item|
+      body.to_s.split(/[\n\r]+/).each do |item|
         item_match = _item.match(item.strip)
         qty, loc = if item_match[3] && item_match[3] =~ /^\d+/
           [item_match[3], item_match[5]]
@@ -78,7 +116,7 @@ class KillmailParser
 
         items << {
           :name => item_match[1],
-          :quantity => qty,
+          :quantity => qty.to_i,
           :location => loc
         }
       end
