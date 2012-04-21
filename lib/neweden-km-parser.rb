@@ -89,8 +89,12 @@ class KillmailParser
     @attackers = []
     attackers.each do |attacker|
       attacker_match = _attacker.match(attacker)
+      attacker_name_match = /^([^()]+)( \((.*)\))?$/.match(attacker_match[1])
+      attacker_name = attacker_name_match[1]
+      final_blow = !!attacker_name_match[3]
       @attackers << {
-        :name =>        attacker_match[1],
+        :name =>        attacker_name,
+        :final_blow =>  final_blow,
         :security =>    attacker_match[2],
         :corp =>        attacker_match[3],
         :alliance =>    attacker_match[4],
@@ -106,13 +110,7 @@ class KillmailParser
     [[destroyed, @destroyed_items], [dropped, @dropped_items]].each do |body, items|
       body.to_s.split(/[\n\r]+/).each do |item|
         item_match = _item.match(item.strip)
-        qty, loc = if item_match[3] && item_match[3] =~ /^\d+/
-          [item_match[3], item_match[5]]
-        elsif item_match[3]
-          [1, item_match[3]]
-        else
-          [1, nil]
-        end
+        qty, loc = [item_match[3] || 1, item_match[5]]
 
         items << {
           :name => item_match[1],
@@ -146,7 +144,7 @@ class KillmailParser
   end
 
   def _item
-    /^([^,]*)(, Qty: (\d+))?( \((.*)\))?$/
+    /^([^,()]*)(, Qty: (\d+))?( \((.*)\))?$/
   end
 
   def _victim

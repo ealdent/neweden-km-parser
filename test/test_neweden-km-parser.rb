@@ -1,3 +1,4 @@
+require 'awesome_print'
 require 'helper'
 
 class TestNewedenKmParser < Test::Unit::TestCase
@@ -92,21 +93,74 @@ class TestNewedenKmParser < Test::Unit::TestCase
     should "parse without error" do
       kmp = KillmailParser.new(EXAMPLE_KILLMAILS['km_podmail_w_implants.txt'])
     end
+
+    context "after parsing" do
+      setup do
+        @kmp = KillmailParser.new(EXAMPLE_KILLMAILS['km_podmail_w_implants.txt'])
+      end
+
+      should "have the correct victim ship type" do
+        assert_equal @kmp.victim[:ship], 'Capsule'
+      end
+
+      should "show the correct implants" do
+        assert_equal @kmp.destroyed_items[0][:name], 'Cybernetic Subprocessor - Improved'
+        assert_equal @kmp.destroyed_items[1][:name], 'Social Adaptation Chip - Improved'
+        assert_equal @kmp.destroyed_items[2][:name], 'Memory Augmentation - Improved'
+        assert_equal @kmp.destroyed_items[3][:name], 'Mining Foreman Mindlink'
+        assert_equal @kmp.destroyed_items[4][:name], 'Neural Boost - Improved'
+        assert_equal @kmp.destroyed_items[5][:name], 'Ocular Filter - Improved'
+
+        assert_equal @kmp.destroyed_items[0][:quantity], 1
+        assert_equal @kmp.destroyed_items[1][:quantity], 1
+        assert_equal @kmp.destroyed_items[2][:quantity], 1
+        assert_equal @kmp.destroyed_items[3][:quantity], 1
+        assert_equal @kmp.destroyed_items[4][:quantity], 1
+        assert_equal @kmp.destroyed_items[5][:quantity], 1
+
+        assert_equal @kmp.destroyed_items[0][:location], 'Implant'
+        assert_equal @kmp.destroyed_items[1][:location], 'Implant'
+        assert_equal @kmp.destroyed_items[2][:location], 'Implant'
+        assert_equal @kmp.destroyed_items[3][:location], 'Implant'
+        assert_equal @kmp.destroyed_items[4][:location], 'Implant'
+        assert_equal @kmp.destroyed_items[5][:location], 'Implant'
+      end
+
+      should "have the correct number of attackers" do
+        assert_equal @kmp.attackers.count, 5
+      end
+
+      should "show no dropped items" do
+        assert_equal @kmp.dropped_items.count, 0
+      end
+    end
   end
 
   context "a pod mail with no implants" do
     should "parse without error" do
       kmp = KillmailParser.new(EXAMPLE_KILLMAILS['km_podmail_wo_implants.txt'])
     end
-  end
 
-  context "a degenerate killmail with no dropped items" do
-    should "parse without error" # do
-    #   kmp = KillmailParser.new(EXAMPLE_KILLMAILS['km_degenerate_dropped.txt'])
-    # end
-  end
+    context "after parsing" do
+      setup do
+        @kmp = KillmailParser.new(EXAMPLE_KILLMAILS['km_podmail_wo_implants.txt'])
+      end
 
-  context "a degenerate killmail with no destroyed items" do
-    should "parse without error"
+      should "have the correct victim ship type" do
+        assert_equal @kmp.victim[:ship], 'Capsule'
+      end
+
+      should "have the correct number of attackers" do
+        assert_equal @kmp.attackers.count, 4
+      end
+
+      should "show no destroyed items" do
+        assert_equal @kmp.destroyed_items.count, 0
+      end
+
+      should "show no dropped items" do
+        assert_equal @kmp.dropped_items.count, 0
+      end
+    end
   end
 end
